@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useSearchStore } from "@/store/searchStore";
 import { useInfiniteScroll } from "@/hooks";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 const SearchResults: FC = () => {
   const { results, isLoading, error, hasMore, loadMore } = useSearchStore();
@@ -27,7 +28,8 @@ const SearchResults: FC = () => {
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {results?.items.map((user, index) => (
-          <div
+          <Link
+            to={`/users/${user.login}`}
             key={`${user.login}-${index}`}
             ref={index === results.items.length - 1 ? lastElementRef : null}
             className={clsx(
@@ -43,15 +45,7 @@ const SearchResults: FC = () => {
               className="w-16 h-16 rounded-full mx-auto mb-2"
             />
             <h3 className="text-lg font-medium text-center">{user.login}</h3>
-            <a
-              href={user.html_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-blue-500 hover:underline block text-center mt-1"
-            >
-              View Profile
-            </a>
-          </div>
+          </Link>
         ))}
       </div>
 
