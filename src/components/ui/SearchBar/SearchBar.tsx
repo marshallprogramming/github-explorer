@@ -1,9 +1,10 @@
-import { FC, ChangeEvent } from "react";
+import { FC, ChangeEvent, KeyboardEvent } from "react";
 import clsx from "clsx";
 
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
+  onSubmit?: () => void;
   placeholder?: string;
   className?: string;
 }
@@ -11,11 +12,18 @@ interface SearchBarProps {
 const SearchBar: FC<SearchBarProps> = ({
   value,
   onChange,
+  onSubmit,
   placeholder = "Search Pokémon...",
   className,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && onSubmit) {
+      onSubmit();
+    }
   };
 
   return (
@@ -24,6 +32,7 @@ const SearchBar: FC<SearchBarProps> = ({
         type="search"
         value={value}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className={clsx(
           "w-full px-4 py-2 rounded-lg",
