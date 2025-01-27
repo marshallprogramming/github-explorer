@@ -1,50 +1,100 @@
-# React + TypeScript + Vite
+````markdown
+# GitHub Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for exploring GitHub users with a clean, responsive interface. Built with TypeScript, React, and the GitHub REST API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Real-time user search with debounced input
+- Infinite scroll pagination for search results
+- Detailed user profiles with key GitHub statistics
+- Dark mode support
+- Responsive design for all screen sizes
+- Accessible UI components
+- Type-safe implementation
 
-## Expanding the ESLint configuration
+## Technology Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Framework**: React with TypeScript
+- **State Management**: Zustand
+- **Routing**: React Router
+- **Styling**: Tailwind CSS
+- **Testing**: Vitest + React Testing Library
+- **API**: GitHub REST API
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/github-explorer.git
+   ```
+````
+
+2. Install dependencies:
+
+   ```bash
+   cd github-explorer
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+### Running Tests
+
+```bash
+npm test
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Project Structure
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+src/
+├── components/        # Reusable UI components
+├── pages/            # Route components
+├── services/         # API service layer
+├── store/           # Zustand store
+├── types/           # TypeScript types/interfaces
+├── hooks/           # Custom React hooks
+└── utils/           # Utility functions
+```
+
+## Key Features
+
+### User Search
+
+- Real-time search with debounced input to minimize API calls
+- Server-side filtering via GitHub's search API
+- Infinite scroll for seamless result loading
+
+### User Profiles
+
+- Detailed user information
+- Key statistics (repositories, followers, following)
+- Direct links to GitHub profiles
+
+### Theme Support
+
+- Light/dark mode toggle
+- System preference detection
+- Persistent theme selection
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
