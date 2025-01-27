@@ -1,12 +1,40 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserProfile } from "@/components";
+import ErrorMessage from "@/components/ui/common/ErrorMessage";
+import LoadingSpinner from "@/components/ui/common/LoadingSpinner";
+import { GitHubUserDetails } from "@/types/github";
+import { githubService } from "@/services/github";
 
 const User: FC = () => {
-  const { id } = useParams();
+  const { username } = useParams();
+  const [user, setUser] = useState<GitHubUserDetails | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setIsLoading(true);
+        const data = await githubService.getUserDetails(username!);
+        setUser(data);
+      } catch (e) {
+        setError(`Failed to load user details: ${e}`);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [username]);
+
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <ErrorMessage message={error} />;
+  if (!user) return null;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">User User: {id}</h1>
+    <div className="max-w-4xl mx-auto p-6">
+      <UserProfile user={user} />
     </div>
   );
 };

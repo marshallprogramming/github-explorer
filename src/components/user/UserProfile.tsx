@@ -1,5 +1,6 @@
 import { GitHubUserDetails } from "@/types/github";
 import { UserAvatar, UserHeader, UserStats, ProfileLink } from "@/components";
+import { FC } from "react";
 
 interface UserProfileProps {
   user: GitHubUserDetails;

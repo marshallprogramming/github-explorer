@@ -29,7 +29,7 @@ const SearchResults: FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {results?.items.map((user, index) => (
           <Link
-            to={`/users/${user.login}`}
+            to={`/user/${user.login}`}
             key={`${user.login}-${index}`}
             ref={index === results.items.length - 1 ? lastElementRef : null}
             className={clsx(
