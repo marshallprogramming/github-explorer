@@ -11,9 +11,13 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
       return savedTheme;
     }
     // If no saved preference, check system preference
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    try {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    } catch {
+      return "light"; // If no system preference, fall back to light mode
+    }
   });
 
   const toggleTheme = () => {
@@ -27,13 +31,19 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
 
   // Listen for system theme changes
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      setTheme(e.matches ? "dark" : "light");
-    };
+    if (localStorage.getItem(THEME_STORAGE_KEY)) return; // Skip if user has set preference
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    try {
+      const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      const handleChange = (e: MediaQueryListEvent) => {
+        setTheme(e.matches ? "dark" : "light");
+      };
+
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    } catch {
+      // Unsupported browser, do nothing
+    }
   }, []);
 
   return (
