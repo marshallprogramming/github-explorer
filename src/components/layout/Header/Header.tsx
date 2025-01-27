@@ -1,5 +1,5 @@
 import { FC } from "react";
-import ThemeToggle from "../../ui/ThemeToggle";
+import { ThemeToggle } from "@/components";
 
 const Header: FC = () => {
   return (

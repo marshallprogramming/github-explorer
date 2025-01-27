@@ -1,9 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
-import Favourites from "./pages/Favourties";
-import Details from "./pages/Details";
 import { ThemeProvider } from "./context";
+import { Details, Favourites, Home } from "@/pages";
+import { Layout } from "@/components";
 
 function App() {
   return (

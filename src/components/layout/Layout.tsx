@@ -1,8 +1,7 @@
-import { PropsWithChildren } from "react";
-import Header from "./Header/Header";
-import Footer from "./Footer/Footer";
+import { FC, PropsWithChildren } from "react";
+import { Header, Footer } from "@/components";
 
-function Layout({ children }: PropsWithChildren) {
+const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -10,6 +9,6 @@ function Layout({ children }: PropsWithChildren) {
       <Footer />
     </div>
   );
-}
+};
 
 export default Layout;
