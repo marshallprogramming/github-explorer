@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context";
-import { Details, Favourites, Home } from "@/pages";
+import { User, Home } from "@/pages";
 import { Layout } from "@/components";
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/favourites" element={<Favourites />} />
-            <Route path="/itunes/:id" element={<Details />} />
+            <Route path="/user/:id" element={<User />} />
           </Routes>
         </Layout>
       </Router>
