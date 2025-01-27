@@ -19,19 +19,17 @@ const SearchResults: FC = () => {
     );
   }
 
-  if (!results?.results.length && !isLoading) {
-    return (
-      <div className="text-center py-8 text-gray-500">No Pokemon found</div>
-    );
+  if (!results?.items.length && !isLoading) {
+    return <div className="text-center py-8 text-gray-500">No Results</div>;
   }
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {results?.results.map((pokemon, index) => (
+        {results?.items.map((user, index) => (
           <div
-            key={`${pokemon.name}-${index}`}
-            ref={index === results.results.length - 1 ? lastElementRef : null}
+            key={`${user.login}-${index}`}
+            ref={index === results.items.length - 1 ? lastElementRef : null}
             className={clsx(
               "p-4 rounded-lg",
               "bg-white dark:bg-gray-800",
@@ -39,7 +37,20 @@ const SearchResults: FC = () => {
               "hover:shadow-lg transition-shadow"
             )}
           >
-            <h3 className="capitalize text-lg font-medium">{pokemon.name}</h3>
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-16 h-16 rounded-full mx-auto mb-2"
+            />
+            <h3 className="text-lg font-medium text-center">{user.login}</h3>
+            <a
+              href={user.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-blue-500 hover:underline block text-center mt-1"
+            >
+              View Profile
+            </a>
           </div>
         ))}
       </div>
@@ -48,7 +59,7 @@ const SearchResults: FC = () => {
         <div
           className="text-center py-8"
           role="status"
-          aria-label="Loading more Pokemon"
+          aria-label="Loading more users"
         >
           <div className="animate-spin h-8 w-8 border-4 border-primary-500 border-t-transparent rounded-full mx-auto" />
         </div>

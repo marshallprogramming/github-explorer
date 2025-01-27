@@ -9,7 +9,7 @@ describe("Home", () => {
     const searchInput = screen.getByLabelText("Search");
     expect(searchInput).toBeInTheDocument();
 
-    fireEvent.change(searchInput, { target: { value: "Pikachu" } });
-    expect(searchInput).toHaveValue("Pikachu");
+    fireEvent.change(searchInput, { target: { value: "marshall" } });
+    expect(searchInput).toHaveValue("marshall");
   });
 });

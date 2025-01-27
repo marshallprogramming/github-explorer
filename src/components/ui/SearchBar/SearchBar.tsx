@@ -13,7 +13,7 @@ const SearchBar: FC<SearchBarProps> = ({
   value,
   onChange,
   onSubmit,
-  placeholder = "Search Pokémon...",
+  placeholder = "Search Github...",
   className,
 }) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

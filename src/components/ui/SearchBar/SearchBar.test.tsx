@@ -7,7 +7,7 @@ describe("SearchBar", () => {
     render(<SearchBar value="" onChange={() => {}} />);
 
     const input = screen.getByLabelText("Search");
-    expect(input).toHaveAttribute("placeholder", "Search Pokémon...");
+    expect(input).toHaveAttribute("placeholder", "Search Github...");
   });
 
   it("renders with custom placeholder", () => {

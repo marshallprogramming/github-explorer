@@ -17,6 +17,8 @@ describe("SearchResults", () => {
       query: "",
       setQuery: vi.fn(),
       search: vi.fn(),
+      hasMore: true,
+      loadMore: vi.fn(),
     }));
   });
 
@@ -28,6 +30,8 @@ describe("SearchResults", () => {
       query: "",
       setQuery: vi.fn(),
       search: vi.fn(),
+      hasMore: true,
+      loadMore: vi.fn(),
     }));
 
     render(<SearchResults />);
@@ -42,6 +46,8 @@ describe("SearchResults", () => {
       query: "",
       setQuery: vi.fn(),
       search: vi.fn(),
+      hasMore: true,
+      loadMore: vi.fn(),
     }));
 
     render(<SearchResults />);
@@ -50,15 +56,21 @@ describe("SearchResults", () => {
 
   it("shows no results message", () => {
     vi.mocked(useSearchStore).mockImplementation(() => ({
-      results: { count: 0, next: null, previous: null, results: [] },
+      results: {
+        total_count: 0,
+        incomplete_results: false,
+        items: [],
+      },
       isLoading: false,
       error: null,
       query: "",
       setQuery: vi.fn(),
       search: vi.fn(),
+      hasMore: true,
+      loadMore: vi.fn(),
     }));
 
     render(<SearchResults />);
-    expect(screen.getByText("No Pokemon found")).toBeInTheDocument();
+    expect(screen.getByText("No Results")).toBeInTheDocument();
   });
 });

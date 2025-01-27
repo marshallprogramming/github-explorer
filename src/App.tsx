@@ -11,7 +11,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/favourites" element={<Favourites />} />
-            <Route path="/pokemon/:id" element={<Details />} />
+            <Route path="/itunes/:id" element={<Details />} />
           </Routes>
         </Layout>
       </Router>

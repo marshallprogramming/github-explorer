@@ -6,7 +6,7 @@ const Details: FC = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Pokemon Details: {id}</h1>
+      <h1 className="text-2xl font-bold">User Details: {id}</h1>
     </div>
   );
 };

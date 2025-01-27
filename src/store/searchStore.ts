@@ -1,14 +1,15 @@
+// store/searchStore.ts
 import { create } from "zustand";
-import { PokemonListResponse } from "@/types/pokemon";
-import { pokemonService } from "@/services/pokemon";
+import { GitHubSearchResponse } from "@/types/github";
+import { githubService } from "@/services/github";
 
 interface SearchState {
   query: string;
-  results: PokemonListResponse | null;
+  results: GitHubSearchResponse | null;
   isLoading: boolean;
   error: string | null;
   hasMore: boolean;
-  offset: number;
+  page: number;
   setQuery: (query: string) => void;
   search: (query: string) => Promise<void>;
   loadMore: () => Promise<void>;
@@ -20,13 +21,13 @@ export const useSearchStore = create<SearchState>((set, get) => ({
   isLoading: false,
   error: null,
   hasMore: true,
-  offset: 0,
+  page: 1,
 
   setQuery: (query) => {
     set({
       query,
       results: null,
-      offset: 0,
+      page: 1,
       hasMore: true,
     });
   },
@@ -34,37 +35,37 @@ export const useSearchStore = create<SearchState>((set, get) => ({
   search: async (query) => {
     try {
       set({ isLoading: true, error: null });
-      const results = await pokemonService.searchPokemon(query, 20, 0);
+      const results = await githubService.searchUsers(query, 20, 1);
       set({
         results,
         isLoading: false,
-        hasMore: !!results.next,
-        offset: 20,
+        hasMore: results.items.length === 20,
+        page: 1,
       });
     } catch (e) {
-      set({ error: `${e}: Failed to search Pokemon`, isLoading: false });
+      set({ error: `${e}: Failed to search users`, isLoading: false });
     }
   },
 
   loadMore: async () => {
-    const { query, offset, isLoading, hasMore, results } = get();
+    const { query, page, isLoading, hasMore, results } = get();
     if (isLoading || !hasMore || !results) return;
 
     try {
       set({ isLoading: true });
-      const newResults = await pokemonService.searchPokemon(query, 20, offset);
+      const newResults = await githubService.searchUsers(query, 20, page + 1);
 
       set({
         results: {
           ...newResults,
-          results: [...results.results, ...newResults.results],
+          items: [...results.items, ...newResults.items],
         },
         isLoading: false,
-        hasMore: !!newResults.next,
-        offset: offset + 20,
+        hasMore: newResults.items.length === 20,
+        page: page + 1,
       });
     } catch (e) {
-      set({ error: `${e}: Failed to load more Pokemon`, isLoading: false });
+      set({ error: `${e}: Failed to load more users`, isLoading: false });
     }
   },
 }));
