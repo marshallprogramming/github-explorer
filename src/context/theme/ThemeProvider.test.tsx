@@ -58,7 +58,7 @@ describe("ThemeProvider", () => {
     expect(document.documentElement.classList.contains("dark")).toBe(true);
   });
 
-  it("defaults to light theme if matchMedia is not available", () => {
+  it("defaults to dark theme if matchMedia is not available", () => {
     // Remove matchMedia to simulate unsupported browser
     // @ts-expect-error - Intentionally removing matchMedia
     window.matchMedia = undefined;
@@ -70,8 +70,8 @@ describe("ThemeProvider", () => {
     );
 
     const themeElement = screen.getByTestId("theme");
-    expect(themeElement).toHaveTextContent("light");
-    expect(document.documentElement.classList.contains("dark")).toBe(false);
+    expect(themeElement).toHaveTextContent("dark");
+    expect(document.documentElement.classList.contains("dark")).toBe(true);
   });
 
   it("gracefully handles matchMedia without event listener support", () => {

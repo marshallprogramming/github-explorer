@@ -16,7 +16,7 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
         ? "dark"
         : "light";
     } catch {
-      return "light"; // If no system preference, fall back to light mode
+      return "dark"; // If no system preference, fall back to dark mode
     }
   });
 
