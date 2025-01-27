@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { renderHook } from "@testing-library/react";
-import { useInfiniteScroll } from "./";
+import { useInfiniteScroll } from ".";
 
 describe("useInfiniteScroll", () => {
   const mockIntersectionObserver = vi.fn();
