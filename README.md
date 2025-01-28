@@ -35,7 +35,7 @@ A React application for exploring GitHub users with a clean, responsive interfac
    ```bash
    git clone https://github.com/yourusername/github-explorer.git
    ```
-````
+
 
 2. Install dependencies:
 
