@@ -1,4 +1,4 @@
-````markdown
+
 # GitHub Explorer
 
 A React application for exploring GitHub users with a clean, responsive interface. Built with TypeScript, React, and the GitHub REST API.
@@ -33,9 +33,9 @@ A React application for exploring GitHub users with a clean, responsive interfac
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/github-explorer.git
+   git clone https://github.com/marshallprogramming/github-explorer.git
    ```
-````
+
 
 2. Install dependencies:
 
