@@ -1,4 +1,4 @@
-````markdown
+
 # GitHub Explorer
 
 A React application for exploring GitHub users with a clean, responsive interface. Built with TypeScript, React, and the GitHub REST API.
