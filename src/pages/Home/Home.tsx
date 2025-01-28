@@ -14,19 +14,28 @@ const Home: FC = () => {
   }, [debouncedQuery, search]);
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4">
-      <h1 className="text-2xl font-bold mb-6">Github Explorer</h1>
-      <SearchBar
-        value={query}
-        onChange={setQuery}
-        className="mb-8"
-        onSubmit={() => {
-          if (query.trim()) {
-            search(query);
-          }
-        }}
-      />
-      <SearchResults />
+    <div className="flex flex-col">
+      <div className="sticky top-[73px] z-10 bg-white dark:bg-gray-900 pt-8 pb-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="max-w-2xl mx-auto">
+            <h1 className="text-2xl font-bold mb-6">Github Explorer</h1>
+            <SearchBar
+              value={query}
+              onChange={setQuery}
+              className="mb-4"
+              onSubmit={() => {
+                if (query.trim()) {
+                  search(query);
+                }
+              }}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 pt-8">
+        <SearchResults />
+      </div>
     </div>
   );
 };
