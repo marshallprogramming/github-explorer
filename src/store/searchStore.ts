@@ -1,4 +1,3 @@
-// store/searchStore.ts
 import { create } from "zustand";
 import { GitHubSearchResponse } from "@/types/github";
 import { githubService } from "@/services/github";
